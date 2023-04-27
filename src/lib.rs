@@ -1,4 +1,4 @@
-//#![cfg_attr(not(test), no_std)]
+#![cfg_attr(not(test), no_std)]
 
 use gc_headers::{Tracer, HeapResult, Pointer, GarbageCollectingHeap, HeapError};
 
@@ -110,9 +110,7 @@ impl<const HEAP_SIZE: usize, const MAX_BLOCKS: usize> GarbageCollectingHeap for
                 self.old = self.new;
                 self.new = temp;
                 self.memory[self.new] = [0;HEAP_SIZE];
-                println!("{:?}",self.memory);
-                println!("{}",new_index);
-                println!("{}",num_words);
+                
                 // for i in 
                 if self.num_blocks==MAX_BLOCKS{
                     return HeapResult::Err(HeapError::OutOfBlocks);
